@@ -1,14 +1,14 @@
 
-class Gras extends livingCreature{
+class Gras extends LivingCreature{
     // zeile;
     // spalte;
     energie = 0;
 
-    constructor(zeile, spalte) {
-        super(zeile, spalte);
-        // this.zeile = z;
-        // this.spalte = s;
-    };
+    // constructor(zeile, spalte) {
+    //     super(zeile, spalte);
+    //     // this.zeile = z;
+    //     // this.spalte = s;
+    // };
     platziereSelbstInMatrix() {
         matrix[this.zeile][this.spalte] = 1;
     };
@@ -26,14 +26,17 @@ class Gras extends livingCreature{
     };
 
     pflanzNeuesGrasObjekt() {
-        // let erdeFelder = this.erstelleErdefelderTabelle(this.istErde); 
-        let erdeFelder = this.umgebung.filter(this.istFeld());
+        let erdeFelder = this.erstelleErdefelderTabelle(); 
         if (erdeFelder.length > 0) {
             let gewähltesFeld = erdeFelder[0];
             let neuesGrasObjekt = new Gras(gewähltesFeld[0],gewähltesFeld[1]);
-            neuesGrasObjekt.platziereSelbstInMatrix(1);
+            neuesGrasObjekt.platziereSelbstInMatrix();
             objekteListe.push(neuesGrasObjekt);
         }
+    };
+
+    erstelleErdefelderTabelle() {
+        return this.umgebung.filter((koordinatenpaar) => this.istFeld(koordinatenpaar, 0));
     };
 
     // erstelleErdefelderTabelle() {

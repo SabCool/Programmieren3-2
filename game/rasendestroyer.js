@@ -1,12 +1,12 @@
- 
-class RasenDestroyer {
-    zeile;
-    spalte;
+ class RasenDestroyer extends LivingCreature {
+    // zeile;
+    // spalte;
     energie = 15;
-    constructor(z,s) {
-        this.zeile = z;
-        this.spalte = s;
-    }
+    // constructor(z,s) {
+    //     // super(z, s);
+    //     // this.zeile = z;
+    //     // this.spalte = s;
+    // }
     spielzug() {
         if(this.energie > 30) {
             this.energie = 15;
@@ -63,27 +63,48 @@ class RasenDestroyer {
         });
         objekteListe.splice(index,1);
     }
+
+    berechneUmgebung() {
+        this.umgebung = [
+            [this.zeile - 1, this.y - 1],
+            [this.zeile, this.spalte - 1],
+            [this.zeile + 1, this.spalte + 1],
+            [this.zeile - 1, this.spalte],
+            [this.zeile + 1, this.spalte],
+            [this.zeile - 1, this.spalte + 1],
+            [this.zeile, this.spalte + 1],
+            [this.zeile + 1, this.spalte +1]
+        ];
+    }
+
     erstelleGrasfelderTabelle() {
-        let benachbarteFelder = [
-            [this.zeile+1,this.spalte],
-            [this.zeile-1,this.spalte],
-            [this.zeile,this.spalte+1],
-            [this.zeile,this.spalte-1],
-        ]
-        return benachbarteFelder.filter(this.istGras);
+        this.berechneUmgebung();
+        return this.umgebung.filter((koordinatenpaar) => this.istFeld(koordinatenpaar, 1));
     }
-    istGras(koordinatenPaar) {
-        let zeile = koordinatenPaar[0];
-        let spalte = koordinatenPaar[1];
-        if (zeile >= 0
-            && spalte >= 0
-            && zeile < matrix.length
-            && spalte < matrix.length
-            && matrix[zeile][spalte] === 1
-        ) {
-            return true;
-        }  else {
-            return false;
-        }
-    }
+
+    // erstelleGrasfelderTabelle() {
+    //     let benachbarteFelder = [
+    //         [this.zeile+1,this.spalte],
+    //         [this.zeile-1,this.spalte],
+    //         [this.zeile,this.spalte+1],
+    //         [this.zeile,this.spalte-1],
+    //     ]
+    //     return benachbarteFelder.filter(this.istGras);
+    // }
+
+
+    // istGras(koordinatenPaar) {
+    //     let zeile = koordinatenPaar[0];
+    //     let spalte = koordinatenPaar[1];
+    //     if (zeile >= 0
+    //         && spalte >= 0
+    //         && zeile < matrix.length
+    //         && spalte < matrix.length
+    //         && matrix[zeile][spalte] === 1
+    //     ) {
+    //         return true;
+    //     }  else {
+    //         return false;
+    //     }
+    // }
 }

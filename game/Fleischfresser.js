@@ -1,12 +1,12 @@
-class Fleischfresser {
-    zeile;
-    spalte;
+class Fleischfresser extends LivingCreature {
+    // zeile;
+    // spalte;
     energie = 200;
 
-    constructor(z,s) {
-        this.zeile = z;
-        this.spalte = s;
-    };
+    // constructor(z,s) {
+    //     this.zeile = z;
+    //     this.spalte = s;
+    // };
     spielzug() {
         console.log("ENERGIE",this.energie)
         if(this.energie > 300) {
@@ -84,29 +84,47 @@ class Fleischfresser {
         });
         objekteListe.splice(index,1);
     }
-    erstelleGrasfresserfelderTabelle() {
-        let benachbarteFelder = [
-            [this.zeile+1,this.spalte],
-            [this.zeile-1,this.spalte],
-            [this.zeile,this.spalte+1],
-            [this.zeile,this.spalte-1],
+
+    berechneUmgebung() {
+        this.umgebung = [
+            [this.zeile - 1, this.y - 1],
+            [this.zeile, this.spalte - 1],
+            [this.zeile + 1, this.spalte + 1],
+            [this.zeile - 1, this.spalte],
+            [this.zeile + 1, this.spalte],
+            [this.zeile - 1, this.spalte + 1],
+            [this.zeile, this.spalte + 1],
+            [this.zeile + 1, this.spalte +1]
         ]
-        return benachbarteFelder.filter(this.istGrasfresser);
     }
-    istGrasfresser(koordinatenPaar) {
-        let zeile = koordinatenPaar[0];
-        let spalte = koordinatenPaar[1];
-        if (zeile >= 0
-            && spalte >= 0
-            && zeile < matrix.length
-            && spalte < matrix.length
-            && matrix[zeile][spalte] === 2
-        ) {
-            return true;
-        }  else {
-            return false;
-        }
+    erstelleGrasfresserfelderTabelle() {
+        this.berechneUmgebung();
+        return this.umgebung.filter((koordinatenpaar) => this.istFeld(koordinatenpaar, 2));
     }
+
+    // erstelleGrasfresserfelderTabelle() {
+    //     let benachbarteFelder = [
+    //         [this.zeile+1,this.spalte],
+    //         [this.zeile-1,this.spalte],
+    //         [this.zeile,this.spalte+1],
+    //         [this.zeile,this.spalte-1],
+    //     ]
+    //     return benachbarteFelder.filter(this.istGrasfresser);
+    // }
+    // istGrasfresser(koordinatenPaar) {
+    //     let zeile = koordinatenPaar[0];
+    //     let spalte = koordinatenPaar[1];
+    //     if (zeile >= 0
+    //         && spalte >= 0
+    //         && zeile < matrix.length
+    //         && spalte < matrix.length
+    //         && matrix[zeile][spalte] === 2
+    //     ) {
+    //         return true;
+    //     }  else {
+    //         return false;
+    //     }
+    // }
     erstelleGrasfelderTabelle() {
         let benachbarteFelder = [
             [this.zeile+1,this.spalte],
