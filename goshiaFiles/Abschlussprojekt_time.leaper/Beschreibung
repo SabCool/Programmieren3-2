@@ -1,0 +1,14 @@
+Erde:
+macht nichts
+
+Gras:
+wächst nur auf Erde, wenn die Energie größer als 5 ist. nach einiger Zeit ändert das Gras seine Farbe, durch den Jahreszeiten wechsel.
+
+Pflanzenfresser:
+ist Gras und vermehrt sich, wenn die Energie größer als 30 ist. Stirbt bei 0 Energie
+
+Feuer:
+Verbrennt Gras und Pflanzenfresser. Löscht sich bei 0 Energie
+
+Asche:
+kommt nachdem das Feuer ausgeloschen ist. Gras kann nicht drauf wachsen; wird mit der Zeit zu Erde
