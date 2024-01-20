@@ -49,9 +49,10 @@ class Grass extends Lebewesen {
         let pos = random(emptyFields);
         let newX = pos[0];
         let newY = pos[1];
-        grassArr.push(new Grass(newX, newY));
+        // grassArr.push(new Grass(newX, newY));
         if (newX >= 0 && newY >= 0 && newX < 100 && newY < 100) {
           matrix[newY][newX] = this.colorCode;
+          grassArr.push(new Grass(newX, newY));
         }
       }
       this.rounds = 0;

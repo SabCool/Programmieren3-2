@@ -152,4 +152,10 @@ function draw() {
       rect(x * side, y * side, side, side);
     }
   }
+
+  console.log("grass", grassArr.length);
+  console.log("fress", fressArr.length);
+  console.log("pred", predatorArr.length);
+  console.log("water", waterArr.length)
+
 }
